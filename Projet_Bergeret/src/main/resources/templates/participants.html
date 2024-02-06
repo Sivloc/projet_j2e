@@ -5,30 +5,30 @@
     <title>Liste des participants</title>
 </head>
 <body>
-
 <!-- Formulaire pour créer un participant -->
-<form th:action="@{/creerParticipant}" method="post">
+<form th:action="@{/creerParticipant}" method="post" th:object="${participant}">
     <h2>Créer un Participant</h2>
     <label for="nom">Nom:</label>
-    <input type="text" id="nom" name="nom" required>
+    <input type="text" id="nom" name="nom" th:field="*{nom}" required>
     <br>
     <label for="prenom">Prénom:</label>
-    <input type="text" id="prenom" name="prenom" required>
+    <input type="text" id="prenom" name="prenom" th:field="*{prenom}" required>
     <br>
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required>
+    <input type="text" id="email" name="email" th:field="*{email}" required>
     <br>
     <label for="date_naiss">Date de Naissance:</label>
-    <input type="text" id="date_naiss" name="date_naiss" required>
+    <input type="text" id="date_naiss" name="date_naiss" th:field="*{date_naiss}" required>
     <br>
     <label for="organisation">Organisation:</label>
-    <input type="text" id="organisation" name="organisation" required>
+    <input type="text" id="organisation" name="organisation" th:field="*{organisation}" required>
     <br>
     <label for="observ">Observations:</label>
-    <input type="text" id="observ" name="observ" required>
+    <input type="text" id="observ" name="observ" th:field="*{observ}" required>
     <br>
     <button type="submit">Créer Participant</button>
 </form>
+
 
 <hr>
 
