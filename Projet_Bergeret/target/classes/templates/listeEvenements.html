@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des évènements</title>
+</head>
+<body>
+<p><a href="/evenements/new">Créer un nouvel événement</a></p>
+<h1>Liste des évènements</h1>
+
+<!-- Vérifie si la liste des événements n'est pas vide avant de tenter de l'afficher -->
+<div th:if="${not #lists.isEmpty(evenements)}">
+    <table>
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Durée</th>
+            <th>Nombre de participants maximum</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Boucle sur la liste des événements pour afficher chaque événement -->
+        <tr th:each="evenement : ${evenements}">
+            <td th:text="${evenement.titre}"></td>
+            <td th:text="${evenement.description}"></td>
+            <td th:text="${evenement.date}"></td>
+            <td th:text="${evenement.duree}"></td>
+            <td th:text="${evenement.nbParticipantsMax}"></td>
+            <!-- Ici, j'utilise la propriété 'id' comme exemple de lien -->
+            <td><a th:href="@{/evenements/edit/{id}(id=${evenement.id})}">Détails</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Si la liste des événements est vide -->
+<div th:if="${#lists.isEmpty(evenements)}">
+    <p>Aucun évènement trouvé.</p>
+</div>
+
+</body>
+</html>

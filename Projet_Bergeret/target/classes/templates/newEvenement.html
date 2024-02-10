@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un évènement</title>
+</head>
+<body>
+<h1>Ajouter un évènement</h1>
+<form th:action="@{/evenements/new}" th:object="${evenement}" method="post">
+    <label for="titre">Titre</label>
+    <input type="text" th:field="*{titre}" name="titre" id="titre" placeholder="Titre de l'évènement">
+
+    <br>
+
+    <label for="description">Description</label>
+    <input type="text" th:field="*{description}" name="description" id="description" placeholder="Description brève de votre évnènement">
+
+    <br>
+
+    <label for="date">Date</label>
+    <input type="date" th:field="*{date}" name="date" id="date">
+
+    <br>
+
+    <label for="duree">Durée (en jours)</label>
+    <input type="number" th:field="*{duree}" name="duree" id="duree" placeholder="1, 2, 3...">
+
+    <br>
+
+    <label for="nbMax">Nombre de participants maximum</label>
+    <input type="number" th:field="*{nbParticipantsMax}" name="nbParticipantsMax" id="nbMax" placeholder="10 , 200...">
+
+    <br>
+
+    <button type="submit">Ajouter</button>
+</form>
+</body>
+</html>

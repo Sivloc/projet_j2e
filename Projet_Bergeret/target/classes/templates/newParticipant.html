@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un nouvel utilisateur et inscrire à un événement</title>
+</head>
+<body>
+<!-- Formulaire pour créer un nouvel utilisateur -->
+<form action="/participants/new" method="post">
+    <h2>Créer un nouvel utilisateur</h2>
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" name="prenom" required><br><br>
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="date_naiss">Date de naissance:</label>
+    <input type="text" id="date_naiss" name="date_naiss" required><br><br>
+    <label for="organisation">Organisation:</label>
+    <input type="text" id="organisation" name="organisation"><br><br>
+    <label for="observations">Observations:</label><br>
+    <textarea id="observations" name="observations"></textarea><br><br>
+    <input type="submit" value="Créer">
+</form>
+
+<!-- Formulaire pour inscrire un utilisateur à un événement -->
+<form action="/inscrire-evenement" method="post">
+    <h2>Inscrire un utilisateur à un événement</h2>
+    <!-- Sélection de l'utilisateur -->
+    <label for="participant">Sélectionnez un participant:</label>
+    <select id="participant" name="participant">
+        <!-- Utilisez Thymeleaf pour boucler sur les participants disponibles -->
+        <option th:each="participant : ${participants}" th:value="${participant.id}" th:text="${participant.nom}"></option>
+    </select><br><br>
+    <!-- Sélection de l'événement -->
+    <label for="evenement">Sélectionnez un événement:</label>
+    <select id="evenement" name="evenement">
+        <!-- Utilisez Thymeleaf pour boucler sur les événements disponibles -->
+        <option th:each="evenement : ${evenements}" th:value="${evenement.id}" th:text="${evenement.titre}"></option>
+    </select><br><br>
+    <input type="submit" value="Inscrire">
+</form>
+</body>
+</html>

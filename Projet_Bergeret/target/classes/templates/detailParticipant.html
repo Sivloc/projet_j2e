@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un participant</title>
+</head>
+<body>
+<h1>Modifier un participant</h1>
+<form th:action="@{/participants/edit/{id}(id=${participant.id})}" th:object="${participant}" method="post">
+
+    <label for="prenom">Prénom</label>
+    <input type="text" th:field="*{prenom}" id="prenom" name="prenom" placeholder="Prénom du participant">
+
+    <br>
+
+    <label for="nom">Nom</label>
+    <input type="text" th:field="*{nom}" id="nom" name="nom" placeholder="Nom du participant">
+
+    <br>
+
+    <label for="email">Email</label>
+    <input type="email" th:field="*{email}" id="email" name="email" placeholder="Email du participant">
+
+    <br>
+
+    <label for="dateNaissance">Date de Naissance</label>
+    <input type="date" th:field="*{date_naiss}" id="dateNaissance" name="dateNaissance">
+
+    <button type="submit">Modifier</button>
+</form>
+<form th:action="@{/participants/delete/{id}(id=${participant.id})}" method="post">
+    <input type="hidden" name="_method" value="DELETE"/>
+    <button type="submit">Supprimer</button>
+</form>
+</body>
+</html>

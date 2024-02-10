@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Participants</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<p><a href="/participants/new">Créer un nouvel utilisateur</a></p>
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Boucle sur la liste des utilisateurs -->
+    <tr th:each="participant : ${participants}">
+        <!-- Affichage des informations de l'utilisateur -->
+        <td th:text="${participant.nom}"></td>
+        <td th:text="${participant.prenom}"></td>
+        <td th:text="${participant.email}"></td>
+        <!-- Boutons pour les actions Détails, Modifier et Supprimer -->
+        <td>
+            <!-- Bouton Détails avec lien vers la page de détails de l'utilisateur -->
+            <a th:href="@{/participants/edit/{id}(id=${participant.id})}">Détails</a>
+            <!-- Bouton Modifier avec lien vers la page de modification de l'utilisateur -->
+            <a th:href="@{/participants/edit/{id}(id=${participant.id})}">Modifier</a>
+            <!-- Bouton Supprimer avec appel à la méthode de suppression de l'utilisateur -->
+            <form th:action="@{/participants/delete/{id}(id=${participant.id})}" method="post">
+                <input type="hidden" name="_method" value="delete" />
+                <button type="submit">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

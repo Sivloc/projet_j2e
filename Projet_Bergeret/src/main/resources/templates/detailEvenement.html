@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un événement</title>
+</head>
+<body>
+<h1>Modifier un événement</h1>
+<form th:action="@{/evenements/edit/{id}(id=${evenement.id})}" th:object="${evenement}" method="post">
+    <label for="titre">Titre</label>
+    <input type="text" th:field="*{titre}" id="titre" name="titre" placeholder="Titre de l'événement">
+
+    <br>
+
+    <label for="description">Description</label>
+    <input type="text" th:field="*{description}" id="description" name="description" placeholder="Description brève de votre événement">
+
+    <br>
+
+    <label for="date">Date</label>
+    <input type="date" th:field="*{date}" id="date" name="date">
+
+    <br>
+
+    <label for="duree">Durée (en jours)</label>
+    <input type="number" th:field="*{duree}" id="duree" name="duree" placeholder="1, 2, 3...">
+
+    <br>
+
+    <label for="nbMax">Nombre de participants maximum</label>
+    <input type="number" th:field="*{nbParticipantsMax}" id="nbMax" name="nbMax" placeholder="10 , 200...">
+
+    <br>
+
+    <button type="submit">Modifier</button>
+</form>
+<form th:action="@{/evenements/delete/{id}(id=${evenement.id})}" method="post">
+    <input type="hidden" name="_method" value="DELETE"/>
+    <button type="submit">Supprimer</button>
+</form>
+</body>
+</html>
