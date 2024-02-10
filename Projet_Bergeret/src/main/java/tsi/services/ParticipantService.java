@@ -1,26 +1,34 @@
 package tsi.services;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tsi.models.Evenement;
 import tsi.models.Participant;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
+import tsi.repositories.ParticipantRepository;
 import java.util.List;
 
+@Service
 public class ParticipantService {
-    private final SessionFactory sessionFactory;
-    public ParticipantService(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
+    @Autowired
+    private ParticipantRepository participantRepository;
+
+    public List<Participant> getAllParticipants() {
+        return participantRepository.findAll();
     }
-    public void insert(Participant participant){
-        Session session = this.sessionFactory.openSession();
-        session.beginTransaction();
-        session.persist(participant);
-        session.getTransaction().commit();
-        session.close();
+
+    public Participant createParticipant(Participant participant) {
+        return participantRepository.save(participant);
     }
-    public List getAllParticipant(){
-        Session session = this.sessionFactory.openSession();
-        List result = session.createQuery("from Participant").list();
-        session.close();
-        return result;
+    public Participant findByEmail(String email) {
+        return participantRepository.findByEmail(email);
+    }
+    public void addParticipant(Participant participant, Evenement evenement) {
+        participantRepository.save(participant);
+    }
+    public void deletebyId(Long id) {
+        participantRepository.deleteById(id);
+    }
+
+    public Participant findById(Long id) {
+        return participantRepository.findById(id).orElse(null);
     }
 }
